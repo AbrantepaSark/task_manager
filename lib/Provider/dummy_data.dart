@@ -44,4 +44,25 @@ List<Task> taskList = [
     date: '14/5/2021',
     time: '7:30pm',
   ),
+  Task(
+    id: '7',
+    title: 'Task 1',
+    description: 'Description of my task 6',
+    date: '14/5/2021',
+    time: '7:30pm',
+  ),
+  Task(
+    id: '8',
+    title: 'Task 1',
+    description: 'Description of my task 6',
+    date: '14/5/2021',
+    time: '7:30pm',
+  ),
+  Task(
+    id: '9',
+    title: 'Task 1',
+    description: 'Description of my task 6',
+    date: '14/5/2021',
+    time: '7:30pm',
+  ),
 ];

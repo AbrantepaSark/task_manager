@@ -25,9 +25,9 @@ class SingleList extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 5),
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
           alignment: Alignment.centerLeft,
-          decoration: BoxDecoration(
-            borderRadius: const BorderRadius.all(Radius.circular(10.0)),
-            color: Colors.blue.shade100,
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(10.0)),
+            color: Colors.white,
           ),
           child: Row(
             children: [

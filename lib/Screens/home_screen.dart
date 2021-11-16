@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../Provider/provider.dart';
+
+import './screens.dart';
 
 import '../Widgets/widgets.dart';
 
@@ -11,9 +12,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFFF0F2F5),
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 5),
+          padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 5),
           child: Column(
             children: [
               Container(
@@ -45,7 +47,9 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushNamed(CreateTask.routeName);
+        },
         child: const Icon(Icons.add),
       ),
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_new_app/Screens/single_task_screen.dart';
 import './Screens/screens.dart';
 
 void main() {
@@ -22,6 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeScreen.routeName: (ctx) => const HomeScreen(),
         SingleTaskScreen.routeName: (ctx) => const SingleTaskScreen(),
+        CreateTask.routeName: (ctx) => CreateTask(),
       },
     );
   }
