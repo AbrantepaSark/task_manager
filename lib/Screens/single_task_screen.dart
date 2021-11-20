@@ -87,7 +87,7 @@ class TaskInfo extends StatelessWidget {
         ),
         const SizedBox(height: 3),
         Card(
-          elevation: 3,
+          elevation: 2,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
             child: Text(

@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       routes: {
         HomeScreen.routeName: (ctx) => const HomeScreen(),
         SingleTaskScreen.routeName: (ctx) => const SingleTaskScreen(),
-        CreateTask.routeName: (ctx) => CreateTask(),
+        CreateTask.routeName: (ctx) => const CreateTask(),
       },
     );
   }

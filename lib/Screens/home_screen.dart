@@ -23,8 +23,8 @@ class HomeScreen extends StatelessWidget {
                 width: double.infinity,
                 alignment: Alignment.bottomLeft,
                 child: const Text(
-                  'ToDo List',
-                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.w400),
+                  'My ToDo',
+                  style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
                 ),
               ),
               Expanded(
