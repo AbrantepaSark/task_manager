@@ -37,10 +37,10 @@ class SingleTaskScreen extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 30),
-            Text(
+            const Text(
               'DESCRIPTION',
               textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey.shade800),
+              style: TextStyle(fontWeight: FontWeight.w600),
             ),
             const SizedBox(
               height: 20,
@@ -83,7 +83,7 @@ class TaskInfo extends StatelessWidget {
       children: [
         Text(
           heading,
-          style: TextStyle(color: Colors.grey.shade700),
+          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
         const SizedBox(height: 3),
         Card(
@@ -92,7 +92,8 @@ class TaskInfo extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 15),
             child: Text(
               text,
-              style: const TextStyle(fontSize: 16),
+              style: TextStyle(
+                  color: Colors.grey.shade700, fontWeight: FontWeight.w600),
             ),
           ),
         )

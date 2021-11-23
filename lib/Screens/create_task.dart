@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -19,12 +21,7 @@ class _CreateTaskState extends State<CreateTask> {
   String description = '';
   DateTime? pickedDate;
   String? pickedTime;
-  // final Map<String, String> _taskData = {
-  //   'title': '',
-  //   'date': '',
-  //   'time': '',
-  //   'description': '',
-  // };
+  bool _isLoading = false;
 
   void datePicker() {
     showDatePicker(
@@ -50,11 +47,55 @@ class _CreateTaskState extends State<CreateTask> {
       if (time == null) {
         return;
       }
-
       setState(() {
         pickedTime = time.format(context);
       });
     });
+  }
+
+  Future<void> _submit() async {
+    // ignore: avoid_print
+    print('here');
+    final isValid = _formkey.currentState!.validate();
+    if (!isValid) {
+      return;
+    }
+
+    _formkey.currentState!.save();
+    setState(() {
+      _isLoading = true;
+    });
+
+    _isLoading
+        ? showDialog(
+            barrierDismissible: true,
+            barrierColor: Colors.black54,
+            context: context,
+            builder: (ctx) => Dialog(
+              child: Column(
+                children: const [
+                  CircularProgressIndicator(),
+                  Text('loading'),
+                ],
+              ),
+            ),
+          )
+        : Null;
+
+    // try {
+    //Save task
+
+    // } catch (e) {
+    // setState(() {
+    // _isLoading = false;
+    // });
+    // showDialog(
+    //   barrierDismissible: true,
+    //   barrierColor: Colors.black54,
+    //   context: context,
+    //   builder: (ctx) => CustomDialog('Alert', e.toString(), ''),
+    // );
+    //}
   }
 
   @override
@@ -84,7 +125,7 @@ class _CreateTaskState extends State<CreateTask> {
               ),
               const SizedBox(height: 5),
               SizedBox(
-                height: 50,
+                height: 55,
                 child: TextFormField(
                   cursorColor: Colors.black45,
                   decoration: InputDecoration(
@@ -96,8 +137,8 @@ class _CreateTaskState extends State<CreateTask> {
                     fillColor: Colors.blue.shade100,
                   ),
                   validator: (value) {
-                    if (value == null || value.length < 3) {
-                      return 'Username must be 3 characters or more.';
+                    if (value == null || value.isEmpty) {
+                      return 'Please provide title.';
                     }
                     return null;
                   },
@@ -106,7 +147,7 @@ class _CreateTaskState extends State<CreateTask> {
                   },
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
               const Text(
                 'Pick date:',
                 style: TextStyle(fontWeight: FontWeight.w800),
@@ -128,7 +169,7 @@ class _CreateTaskState extends State<CreateTask> {
                   ],
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
               const Text(
                 'Pick time:',
                 style: TextStyle(fontWeight: FontWeight.w800),
@@ -169,7 +210,7 @@ class _CreateTaskState extends State<CreateTask> {
                 color: Colors.white,
                 child: TextFormField(
                   cursorColor: Colors.black45,
-                  maxLines: 8,
+                  maxLines: 5,
                   textInputAction: TextInputAction.done,
                   decoration: const InputDecoration(
                     contentPadding:
@@ -179,7 +220,7 @@ class _CreateTaskState extends State<CreateTask> {
                     border: InputBorder.none,
                   ),
                   validator: (value) {
-                    if (value == null) {
+                    if (value == null || value.isEmpty) {
                       return 'Provide task description';
                     }
                     return null;
@@ -189,7 +230,7 @@ class _CreateTaskState extends State<CreateTask> {
                   },
                 ),
               ),
-              CustomButton(Icons.save, 'Save', () {}),
+              CustomButton(Icons.save, 'Save', _submit),
             ],
           ),
         ),

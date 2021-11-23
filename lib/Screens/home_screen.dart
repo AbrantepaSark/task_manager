@@ -19,14 +19,15 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               Container(
-                height: 60,
+                height: 45,
                 width: double.infinity,
-                alignment: Alignment.bottomLeft,
+                alignment: Alignment.center,
                 child: const Text(
                   'My ToDo',
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.w700),
                 ),
               ),
+              const Text('Keep your tasks safe and accessible'),
               Expanded(
                 child: Container(
                   margin: const EdgeInsets.only(top: 8),

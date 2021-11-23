@@ -5,12 +5,12 @@ class CustomButton extends StatelessWidget {
       : super(key: key);
   final IconData icon;
   final String text;
-  final Function onPressHandler;
+  final VoidCallback onPressHandler;
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () => onPressHandler,
+      onPressed: onPressHandler,
       style: ButtonStyle(
         shape: MaterialStateProperty.all<RoundedRectangleBorder>(
           RoundedRectangleBorder(
