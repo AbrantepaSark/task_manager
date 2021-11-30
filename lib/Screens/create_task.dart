@@ -1,9 +1,13 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 import '../Widgets/widgets.dart';
+import '../Provider/Tasks_provider.dart';
 
 class CreateTask extends StatefulWidget {
   static const routeName = '/createTask';
@@ -18,7 +22,7 @@ class _CreateTaskState extends State<CreateTask> {
 
   // final _titleController = TextEditingController();
   String title = '';
-  String description = '';
+  String des = '';
   DateTime? pickedDate;
   String? pickedTime;
   bool _isLoading = false;
@@ -53,11 +57,19 @@ class _CreateTaskState extends State<CreateTask> {
     });
   }
 
+  void _showInfoDialog(String message) {
+    showDialog(
+      barrierDismissible: true,
+      barrierColor: Colors.black54,
+      context: context,
+      builder: (ctx) => CustomDialog('Alert!!!', message, ''),
+    );
+  }
+
   Future<void> _submit() async {
-    // ignore: avoid_print
-    print('here');
     final isValid = _formkey.currentState!.validate();
-    if (!isValid) {
+    if (!isValid && pickedDate == null && pickedTime == null) {
+      _showInfoDialog('Provide all details.');
       return;
     }
 
@@ -65,37 +77,25 @@ class _CreateTaskState extends State<CreateTask> {
     setState(() {
       _isLoading = true;
     });
+    //_isLoading ? loader(context) : null;
+    try {
+      print('here');
+      // await Provider.of<Tasks>(context, listen: false)
+      //     .createTask(title, des, pickedDate!, pickedTime!);
+      Provider.of<Tasks>(context, listen: false).test();
+      //Save task
 
-    _isLoading
-        ? showDialog(
-            barrierDismissible: true,
-            barrierColor: Colors.black54,
-            context: context,
-            builder: (ctx) => Dialog(
-              child: Column(
-                children: const [
-                  CircularProgressIndicator(),
-                  Text('loading'),
-                ],
-              ),
-            ),
-          )
-        : Null;
-
-    // try {
-    //Save task
-
-    // } catch (e) {
-    // setState(() {
-    // _isLoading = false;
-    // });
-    // showDialog(
-    //   barrierDismissible: true,
-    //   barrierColor: Colors.black54,
-    //   context: context,
-    //   builder: (ctx) => CustomDialog('Alert', e.toString(), ''),
-    // );
-    //}
+    } catch (e) {
+      setState(() {
+        _isLoading = false;
+      });
+      // showDialog(
+      //   barrierDismissible: true,
+      //   barrierColor: Colors.black54,
+      //   context: context,
+      //   builder: (ctx) => CustomDialog('Alert', e.toString(), ''),
+      //);
+    }
   }
 
   @override
@@ -135,6 +135,8 @@ class _CreateTaskState extends State<CreateTask> {
                     border: InputBorder.none,
                     filled: true,
                     fillColor: Colors.blue.shade100,
+                    errorStyle: const TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -218,6 +220,8 @@ class _CreateTaskState extends State<CreateTask> {
                     hintText: 'Enter task description',
                     hintStyle: TextStyle(fontSize: 13),
                     border: InputBorder.none,
+                    errorStyle: TextStyle(
+                        color: Colors.red, fontWeight: FontWeight.bold),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -226,7 +230,7 @@ class _CreateTaskState extends State<CreateTask> {
                     return null;
                   },
                   onSaved: (value) {
-                    description = value.toString();
+                    des = value.toString();
                   },
                 ),
               ),

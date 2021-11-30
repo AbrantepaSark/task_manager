@@ -39,6 +39,7 @@ class HomeScreen extends StatelessWidget {
                       des: taskList[i].description,
                       date: taskList[i].date,
                       time: taskList[i].time,
+                      createdDate: taskList[i].createdDate,
                     ),
                   ),
                 ),

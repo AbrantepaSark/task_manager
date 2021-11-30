@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
 import '../Screens/screens.dart';
 
 class SingleList extends StatelessWidget {
@@ -9,12 +11,14 @@ class SingleList extends StatelessWidget {
     required this.des,
     required this.date,
     required this.time,
+    required this.createdDate,
   }) : super(key: key);
   final String id;
   final String title;
   final String des;
-  final String date;
+  final DateTime date;
   final String time;
+  final DateTime createdDate;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +42,7 @@ class SingleList extends StatelessWidget {
                       style: const TextStyle(
                           fontWeight: FontWeight.w500, fontSize: 17)),
                   const SizedBox(height: 10),
-                  Text('$date, $time',
+                  Text(DateFormat.yMMMEd().format(createdDate),
                       style: const TextStyle(fontWeight: FontWeight.w300)),
                 ],
               ),

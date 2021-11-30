@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 
-
 class CustomDialog extends StatelessWidget {
   final String message, title;
   final String cun;
-  CustomDialog(this.title, this.message, this.cun);
+  const CustomDialog(this.title, this.message, this.cun, {Key? key})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Dialog(
       elevation: 3,
-      insetPadding: EdgeInsets.symmetric(horizontal: 60.0, vertical: 24.0),
+      insetPadding:
+          const EdgeInsets.symmetric(horizontal: 60.0, vertical: 24.0),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
       child: Container(
           height: 160,
           //width: 80,
-          padding: EdgeInsets.only(bottom: 5),
+          padding: const EdgeInsets.only(bottom: 5),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
             color: Colors.white,
@@ -28,19 +29,19 @@ class CustomDialog extends StatelessWidget {
                   //height: 50,
                   width: double.infinity,
                   alignment: Alignment.center,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15),
+                      topLeft: Radius.circular(14),
+                      topRight: Radius.circular(14),
                     ),
-                    color: Color(0xF200008B),
+                    color: Colors.brown,
                   ),
                   child: Text(
                     title,
                     maxLines: 1,
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.white,
-                        fontWeight: FontWeight.w500,
+                        fontWeight: FontWeight.w700,
                         fontSize: 18),
                   ),
                 ),
@@ -48,7 +49,7 @@ class CustomDialog extends StatelessWidget {
               Expanded(
                 flex: 3,
                 child: Container(
-                  padding: EdgeInsets.only(top: 5, bottom: 5),
+                  padding: const EdgeInsets.only(top: 5, bottom: 5),
                   alignment: Alignment.center,
                   child: Text(message),
                 ),
@@ -63,7 +64,7 @@ class CustomDialog extends StatelessWidget {
                         onPressed: () {
                           Navigator.of(context).pop(false);
                         },
-                        child: Text(
+                        child: const Text(
                           'Cuncel',
                           style: TextStyle(fontSize: 12),
                         ),
@@ -72,7 +73,7 @@ class CustomDialog extends StatelessWidget {
                       onPressed: () {
                         Navigator.of(context).pop(true);
                       },
-                      child: Text(
+                      child: const Text(
                         'OK',
                         style: TextStyle(fontSize: 12),
                       ),

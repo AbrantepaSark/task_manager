@@ -5,13 +5,15 @@ class Task with ChangeNotifier {
   final String id;
   final String title;
   final String description;
-  final String date;
+  final DateTime date;
   final String time;
+  DateTime createdDate;
   Task({
     required this.id,
     required this.title,
     required this.description,
     required this.date,
     required this.time,
+    required this.createdDate,
   });
 }
